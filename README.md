@@ -54,7 +54,7 @@ Actualmente, estoy creando [Plande](https://plande.app), una web app similar a �
 
 Sí, por supuesto, pero no te lo recomiendo. El código está feo y es engorroso armar este [array monstruoso](https://github.com/valentincostam/isi/blob/master/src/js/main.js#L1-L75) (\*).
 
-Con suerte, [Plande](https//:plande.app) va a estar listo pronto y va a ser más fácil agregar otra carrera.
+Con suerte, [Plande](https://plande.app) va a estar listo pronto y va a ser más fácil agregar otra carrera.
 
 > (\*) Esta es una de mis primeras web app, y la primera vez que usé Vue. Además, con la idea de tener un prototipo rápido, puse todo en un solo archivo, no hice ningún CRUD (o ABM) ni usé base de datos, y quedó así.
 
