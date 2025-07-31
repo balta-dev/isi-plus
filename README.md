@@ -48,13 +48,13 @@ En el código, ese cálculo se encuentra en [estas líneas](https://github.com/v
 
 Sí, pero no sería fácil. Esta versión no cuenta con la posibilidad de cargar nuevas carreras, ni siquiera materias. Todos los datos de la carrera están [_hard-coded_](https://es.wikipedia.org/wiki/Hard_code).
 
-Actualmente, estoy creando [Plande](https//plande.app), una web app similar a ésta, que permite cargar más carreras. Seguime en [Twitter](https://twitter.com/valentincostam) para enterarte cómo va.
+Actualmente, estoy creando [Plande](https://plande.app), una web app similar a ésta, que permite cargar más carreras. Seguime en [Twitter](https://twitter.com/valentincostam) para enterarte cómo va.
 
 ### 3. ¿Puedo copiarla y hacerla para otra carrera?
 
 Sí, por supuesto, pero no te lo recomiendo. El código está feo y es engorroso armar este [array monstruoso](https://github.com/valentincostam/isi/blob/master/src/js/main.js#L1-L75) (\*).
 
-Con suerte, [Plande](https//plande.app) va a estar listo pronto y va a ser más fácil agregar otra carrera.
+Con suerte, [Plande](https//:plande.app) va a estar listo pronto y va a ser más fácil agregar otra carrera.
 
 > (\*) Esta es una de mis primeras web app, y la primera vez que usé Vue. Además, con la idea de tener un prototipo rápido, puse todo en un solo archivo, no hice ningún CRUD (o ABM) ni usé base de datos, y quedó así.
 
