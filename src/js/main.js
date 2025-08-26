@@ -1,3 +1,4 @@
+// localStorage.removeItem("materias");
 let materiasISI = JSON.parse(localStorage.getItem('materias')) || [
   // Primer año
   // - Anual
@@ -277,6 +278,11 @@ const app = new Vue({
   el: '#app',
   store,
   components: { Materia },
+  data() {
+    return {
+      years: ['1', '2', '3', '4', '5']
+    };
+  },
   computed: {
     horasElectivasAprobadas: function () {
       const horasElectivas = this.$store.getters.getMateriasElectivasAprobadas.map(m => m.horas);
@@ -300,20 +306,8 @@ const app = new Vue({
       const horasTotalesMinimas = horasObligatorias + horasElectivas;
       return ((horasObligatoriasAprobadas + horasElectivasAprobadas) / horasTotalesMinimas * 100).toFixed(2);
     },
-    primerAnoAprobado: function () {
-      return this.$store.getters.getMateriasAno('1').every(m => m.estado === 'aprobada');
-    },
-    segundoAnoAprobado: function () {
-      return this.$store.getters.getMateriasAno('2').every(m => m.estado === 'aprobada');
-    },
-    tercerAnoAprobado: function () {
-      return this.$store.getters.getMateriasAno('3').every(m => m.estado === 'aprobada');
-    },
-    cuartoAnoAprobado: function () {
-      return this.$store.getters.getMateriasAno('4').every(m => m.estado === 'aprobada');
-    },
-    quintoAnoAprobado: function () {
-      return this.$store.getters.getMateriasAno('5').every(m => m.estado === 'aprobada');
+    isAnoAprobado() {
+      return (year) => this.$store.getters.getMateriasAno(year).every(m => m.estado === 'aprobada');
     }
   },
   methods: {
@@ -328,7 +322,17 @@ const app = new Vue({
     },
     ocultarDependencias: () => {
       document.querySelectorAll('.dependencias')[0].classList.remove('dependencias--visible');
-    }
+    },
+    yearName(year) {
+      const names = {
+        '1': 'primer',
+        '2': 'segundo',
+        '3': 'tercero',
+        '4': 'cuarto',
+        '5': 'quinto'
+      };
+      return names[year] || year;
+    } 
   }
 });
 
