@@ -1,3 +1,27 @@
+.plan__contenido {
+  display: flex;
+  flex-wrap: wrap;
+  overflow: hidden;
+  cursor: help;
+
+  @media (max-width: $tablet) {
+      display: block;
+      flex-wrap: nowrap;
+  }
+  
+}
+
+.plan__estudio {
+  font-family: monospace;
+  color: whitesmoke;
+  width: 100%;
+  background: lighten(#171717, 8%);
+  padding-left: 1rem;
+  padding-right: 1rem;
+  cursor: pointer;
+  position: relative;
+}
+
 .informacion {
   background: lighten(#f7e399, 8%);
   border-top: 1px solid darken(#f7e399, 5%);

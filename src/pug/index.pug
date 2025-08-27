@@ -25,70 +25,81 @@ html(lang="es")
         span Ingeniería en Sistemas de Información
         strong Plan de Estudios
 
-    //p.feedback 🤔 #[strong ¿Qué le cambiarías a esta app?] Contame en #[a(href="https://twitter.com/valentincostam") Twitter] o por #[a(href="mailto:valentincostam+plan@gmail.com?subject=Comentario sobre el plan de estudios") email]. Estoy creando una nueva versión y me gustaría tener en cuenta tu opinión.
+    p.feedback #[strong ISI PLUS] - Una manera más fácil de llevar tu registro de la carrera!
 
     main#app
-      .ano(v-for="year in years" :key="year" :class="['ano--' + yearName(year), { 'ano--aprobado': isAnoAprobado(year) }]")
-        h2.ano__titulo(@click="aprobarAno(year)") {{ yearName(year) }} año
-        h3.ano__subtitulo Anual
-        materia(
-          v-for="m in $store.getters.getMateriasAnoAnuales(year)"
-          :key="m.id"
-          :id="m.id"
-          :nombre="m.nombre"
-          :horas="m.horas"
-          :integradora="m.integradora"
-          :electiva="m.electiva"
-          :analista="m.analista")
+  
+      h2.header-alt
+        strong Carreras disponibles:
+  
+      h2.plan__estudio(@click="mostrarPlan = !mostrarPlan") Ing. en Sistemas de Información 
+        span(v-if="!mostrarPlan") ▼
+        span(v-else) ▲
+    
+      transition(name="fade")
+        .plan__contenido(v-show="mostrarPlan")
 
-        h3.ano__subtitulo Primer cuatrimestre
-        materia(
-          v-for="m in $store.getters.getMateriasAnoCuatrimestre(year, '1')"
-          :key="m.id"
-          :id="m.id"
-          :nombre="m.nombre"
-          :horas="m.horas"
-          :integradora="m.integradora"
-          :electiva="m.electiva"
-          :analista="m.analista")
-
-        h3.ano__subtitulo Segundo cuatrimestre
-        materia(
-          v-for="m in $store.getters.getMateriasAnoCuatrimestre(year, '2')"
-          :key="m.id"
-          :id="m.id"
-          :nombre="m.nombre"
-          :horas="m.horas"
-          :integradora="m.integradora"
-          :electiva="m.electiva"
-          :analista="m.analista")
-
-      .estadisticas(v-cloak)
-        .estadisticas__dato.estadisticas__dato--aprobadas
-          p
-            strong.estadistica__rotulo Aprobadas: 
-            span.estadistica__valor {{ cantidadMateriasAprobadas }}#[em /{{ cantidadMaterias }}]
-
-        .estadisticas__dato.estadisticas__dato--horas-electivas
-          p
-            strong.estadistica__rotulo Hs. Electivas: 
-            span.estadistica__valor {{ horasElectivasAprobadas }}#[em /44]
-
-        .estadisticas__dato.estadisticas__dato--progreso
-          p
-            strong.estadistica__rotulo Progreso: 
-            span.estadistica__valor {{ progreso }}%
-
-        .estadisticas__dato.estadisticas__dato--horas-semanales
-          p
-            strong.estadistica__rotulo Hs. Semanales: 
-            span.estadistica__valor {{ horasSemanalesCursando }}
-
-        .estadisticas__barra-progreso
-          .inner(:style="{width: progreso + '%'}")
-
-      .dependencias(@click="ocultarDependencias") 
-
+          .ano(v-for="year in years" :key="year" :class="['ano--' + yearName(year), { 'ano--aprobado': isAnoAprobado(year) }]")
+            h2.ano__titulo(@click="aprobarAno(year)") {{ yearName(year) }} año
+            h3.ano__subtitulo Anual
+            materia(
+              v-for="m in $store.getters.getMateriasAnoAnuales(year)"
+              :key="m.id"
+              :id="m.id"
+              :nombre="m.nombre"
+              :horas="m.horas"
+              :integradora="m.integradora"
+              :electiva="m.electiva"
+              :analista="m.analista")
+    
+            h3.ano__subtitulo Primer cuatrimestre
+            materia(
+              v-for="m in $store.getters.getMateriasAnoCuatrimestre(year, '1')"
+              :key="m.id"
+              :id="m.id"
+              :nombre="m.nombre"
+              :horas="m.horas"
+              :integradora="m.integradora"
+              :electiva="m.electiva"
+              :analista="m.analista")
+    
+            h3.ano__subtitulo Segundo cuatrimestre
+            materia(
+              v-for="m in $store.getters.getMateriasAnoCuatrimestre(year, '2')"
+              :key="m.id"
+              :id="m.id"
+              :nombre="m.nombre"
+              :horas="m.horas"
+              :integradora="m.integradora"
+              :electiva="m.electiva"
+              :analista="m.analista")
+    
+          .estadisticas(v-cloak)
+            .estadisticas__dato.estadisticas__dato--aprobadas
+              p
+                strong.estadistica__rotulo Aprobadas: 
+                span.estadistica__valor {{ cantidadMateriasAprobadas }}#[em /{{ cantidadMaterias }}]
+    
+            .estadisticas__dato.estadisticas__dato--horas-electivas
+              p
+                strong.estadistica__rotulo Hs. Electivas: 
+                span.estadistica__valor {{ horasElectivasAprobadas }}#[em /44]
+    
+            .estadisticas__dato.estadisticas__dato--progreso
+              p
+                strong.estadistica__rotulo Progreso: 
+                span.estadistica__valor {{ progreso }}%
+    
+            .estadisticas__dato.estadisticas__dato--horas-semanales
+              p
+                strong.estadistica__rotulo Hs. Semanales: 
+                span.estadistica__valor {{ horasSemanalesCursando }}
+    
+            .estadisticas__barra-progreso
+              .inner(:style="{width: progreso + '%'}")
+    
+          .dependencias(@click="ocultarDependencias")
+    
     section.informacion
       h3.informacion__titulo #[span (+)] ¿Cómo uso esta herramienta?
       .informacion__cuerpo
@@ -100,6 +111,7 @@ html(lang="es")
         ul.informacion__lista
           li #[strong Proyecto Final] es la última materia en aprobarse.
           li Las horas semanales de #[strong Práctica Supervisada] varía con cada estudiante. Las aquí expuestas fueron determinadas de forma arbitraria.
+
 
     footer.footer
       p.footer__authoring Hecho con #[span ❤] por #[a(href="https://valentincosta.com") #[strong Valentín Costa]] · #[a(href="https://github.com/valentincostam/isi") #[strong GitHub]]

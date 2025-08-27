@@ -280,6 +280,7 @@ const app = new Vue({
   components: { Materia },
   data() {
     return {
+      mostrarPlan: false,
       years: ['1', '2', '3', '4', '5']
     };
   },
